@@ -7,6 +7,15 @@
 //
 
 #import "HSBaseViewCtrl.h"
+///视图导航栏标题
+NSString * const HSPageViewTitleKey = @"HSPageViewTitleKey";
+///视图所需数据id
+NSString * const HSPageViewInfoIdKey = @"HSPageViewInfoIdKey";
+///视图所需数据信息
+NSString * const HSPageViewInfoKey = @"HSPageViewInfoKey";
+///视图所需其他数据信息
+NSString * const HSPageViewOhterInfoKey = @"HSPageViewOhterInfoKey";
+
 
 @interface HSBaseViewCtrl ()
 
@@ -18,7 +27,7 @@
 #pragma mark - System Methods/LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"d_bg_color"];
+    self.view.backgroundColor = [UIColor systemGroupedBackgroundColor];
 }
 
 
