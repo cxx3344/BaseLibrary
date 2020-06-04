@@ -27,7 +27,11 @@ NSString * const HSPageViewOhterInfoKey = @"HSPageViewOhterInfoKey";
 #pragma mark - System Methods/LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor systemGroupedBackgroundColor];
+    if (@available(iOS 13.0, *)) {
+        self.view.backgroundColor = [UIColor systemGroupedBackgroundColor];
+    } else {
+        self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    }
 }
 
 
