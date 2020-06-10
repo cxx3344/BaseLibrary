@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "BaseLibrary"
-  spec.version      = "0.0.4"
+  spec.version      = "0.0.5"
   spec.summary      = "常用自定义类库"
 
   # This description is used to generate tags and improve search results.
@@ -26,6 +26,7 @@ Pod::Spec.new do |spec|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
   常用自定义类库，项目使用的基础类库
+  新增自定义轮询定时器HSPollingHelper
                    DESC
 
   spec.homepage     = "https://github.com/cxx3344/BaseLibrary"
