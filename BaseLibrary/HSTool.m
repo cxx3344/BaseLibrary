@@ -8,6 +8,7 @@
 
 #import "HSTool.h"
 
+
 @implementation HSTool
 ///获取Document地址
 + (NSString *)getDocumentPath{
@@ -26,6 +27,15 @@
     NSString *tempPath = NSTemporaryDirectory();
     return tempPath;
 }
+
+///判断文件夹/文件是否存在
++ (BOOL)checkFileExist:(NSString*)filePath{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isExist = [fm fileExistsAtPath:filePath];
+    return isExist;
+}
+
+
 ///获取不同模式图片
 +(UIImage *)getdarkModeImage:(NSString *)imgName
              traitcollection:(UITraitCollection *)trait{
@@ -54,5 +64,86 @@
     UIImage *image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAutomatic];
     return image;
 }
+///格式化接口上传参数
++ (NSDictionary*)formatUploadPropertyWith:(NSDictionary*)dic{
+    NSError *jsonError;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString* jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSData *objectData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:objectData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&jsonError];
+    if (nil == jsonDic) {
+        jsonDic = @{};
+    }
+    return jsonDic;
+}
+///中文网址编码
++ (NSString*)chineseUrlEncodeWith:(NSString*)urlStr{
+    if (@available(iOS 9.0, *)) {
+        return [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    }else{
+        return [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+
+}
+///中文网址反编码
++ (NSString*)chineseUrlRemoveEncodeWith:(NSString*)urlStr{
+    if (@available(iOS 9.0, *)) {
+        return [urlStr stringByRemovingPercentEncoding];
+    }else{
+        return [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+}
+///给View添加圆角
++ (void)setCornerRadius:(CGFloat)radius
+                 corner:(UIRectCorner)corner
+                forView:(UIView*)view{
+   CAShapeLayer *maskLayer = [CAShapeLayer layer];
+   maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:view.bounds
+                                          byRoundingCorners:corner
+                                                cornerRadii:(CGSize){radius, radius}].CGPath;
+   view.layer.masksToBounds = YES;
+   view.layer.mask = maskLayer;
+}
+/**
+ 获取视频时长
+ */
++ (CGFloat)get_videoTotalWith:(NSURL *)videoURL
+{
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
+                                                     forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:videoURL options:opts];
+    float second = 0;
+    second = urlAsset.duration.value/urlAsset.duration.timescale;
+    return second;
+}
+/**
+ 获取视频缩略图
+ */
++ (UIImage *)get_videoThumbImage:(NSURL *)videoURL
+{
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:videoURL options:opts];
+    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];
+    generator.appliesPreferredTrackTransform = YES;
+    CMTime actualTime;
+    NSError *error = nil;
+    CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(0, 600) actualTime:&actualTime error:&error];
+    if (error) {
+        return nil;
+    }
+    return [UIImage imageWithCGImage:img];
+
+}
+
+
+
+
+
+
+
+
+
 
 @end

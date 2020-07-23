@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "BaseLibrary"
-  spec.version      = "0.0.5"
+  spec.version      = "0.0.6"
   spec.summary      = "常用自定义类库"
 
   # This description is used to generate tags and improve search results.
@@ -27,6 +27,8 @@ Pod::Spec.new do |spec|
   spec.description  = <<-DESC
   常用自定义类库，项目使用的基础类库
   新增自定义轮询定时器HSPollingHelper
+  新增HSTool中的公共方法
+
                    DESC
 
   spec.homepage     = "https://github.com/cxx3344/BaseLibrary"
@@ -119,7 +121,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.framework  = "SomeFramework"
-  spec.frameworks = "UIKit", "Foundation"
+  spec.frameworks = "UIKit", "Foundation", "AVFoundation"
 
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"
