@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///UITextField的默认创建
 + (UITextField*)defaultTextField;
 
+///UITextView的默认创建
++ (UITextView*)defaultTextView;
+
 ///UIView的默认创建
 + (UIView*)defaultView;
 

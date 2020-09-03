@@ -19,6 +19,16 @@
     button.userInteractionEnabled = YES;
     return button;
 }
+
+///UITextView的默认创建
++ (UITextView*)defaultTextView{
+    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectZero];
+    textView.font = [UIFont systemFontOfSize:14.0];
+    textView.clipsToBounds = YES;
+    textView.userInteractionEnabled = YES;
+    return textView;
+}
+
 ///Label的默认创建
 + (UILabel*)defaultLabel {
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
