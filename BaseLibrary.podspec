@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "BaseLibrary"
-  spec.version      = "0.0.7"
+  spec.version      = "0.0.8"
   spec.summary      = "常用自定义类库"
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  HSViewHelper添加UITextView便捷初始化方式
+  重新上传代码
 
                    DESC
 
