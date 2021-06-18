@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "BaseLibrary"
-  spec.version      = "0.0.8"
+  spec.version      = "0.0.9"
   spec.summary      = "常用自定义类库"
 
   # This description is used to generate tags and improve search results.
